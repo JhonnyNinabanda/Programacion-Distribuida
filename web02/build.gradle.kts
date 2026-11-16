@@ -1,0 +1,22 @@
+plugins {
+    id("java")
+    id("application")
+}
+
+version = "1.0"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation("org.jboss.resteasy:resteasy-core:7.0.5.Final")
+
+    implementation("org.jboss.resteasy:resteasy-undertow:7.0.5.Final")
+
+}
+
+application {
+    mainClass.set("com.programacion.distribuida.Web02Main")
+}
