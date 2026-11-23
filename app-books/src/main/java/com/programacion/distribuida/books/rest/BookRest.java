@@ -1,14 +1,15 @@
 package com.programacion.distribuida.books.rest;
 
-import com.programacion.distribuida.books.db.Book;
-import com.programacion.distribuida.books.repo.BookRepository;
+import com.programacion.distribuida.books.dtos.BookDto;
 
+import com.programacion.distribuida.books.services.interfaces.BookService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -18,13 +19,26 @@ import java.util.List;
 @ApplicationScoped
 @Transactional
 public class BookRest {
+    private final BookService bookService;
 
     @Inject
-    BookRepository bookRepository;
+    public BookRest(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @GET
-    public List<Book> findAll() {
-        return bookRepository.listAll();
+    public List<BookDto> findAll() {
+        return bookService.findAll();
+
+    }
+
+    @GET
+    @Path("/{isbn}")
+    public Response findById(@PathParam("isbn") String isbn) {
+        return bookService.findByIdOptional(isbn)
+                .map(Response::ok)
+                .orElse(Response.status(Response.Status.NOT_FOUND))
+                .build();
     }
 
 }

@@ -35,16 +35,17 @@ public class AuthorRest {
 
     @GET
     @Path("/{id}")
-    public Response getAuthorById(
-            @PathParam("id") Integer id) {
-
+    public Response getAuthorById(@PathParam("id") Integer id) {
         return authorRepository.findByIdOptional(id)
-                .map(author ->
-                        Response.ok(author).build())
-                .orElse(
-                        Response.status(
-                                        Response.Status.NOT_FOUND)
+                .map(author -> Response.ok(author).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND)
                                 .build()
                 );
+    }
+
+    @GET
+    @Path("/find/{isbn}")
+    public List<Author> findByBook(@PathParam("isbn") String isbn) {
+        return authorRepository.findByBook(isbn);
     }
 }

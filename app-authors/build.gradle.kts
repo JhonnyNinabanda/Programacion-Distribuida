@@ -37,6 +37,12 @@ dependencies {
     implementation("io.quarkus:quarkus-rest")
 
     implementation("io.quarkus:quarkus-rest-jsonb")
+
+    // Control de cambio de Base de Datos
+    implementation("io.quarkus:quarkus-flyway")
+    implementation("org.flywaydb:flyway-database-postgresql")
+
+
 }
 
 tasks.withType<JavaCompile> {
