@@ -355,8 +355,6 @@ Universidad Central del Ecuador
 
 Facultad de Ingeniería y Ciencias Aplicadas
 
-Asignatura: Programación Distribuida
-
 Periodo Académico: 2026 - 2027
 
 ---
