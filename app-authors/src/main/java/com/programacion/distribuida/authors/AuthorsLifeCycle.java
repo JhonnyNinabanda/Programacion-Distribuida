@@ -41,6 +41,10 @@ public class AuthorsLifeCycle {
 
     public void init(@Observes StartupEvent event, Vertx vertx) {
         System.out.println("AuthorsLifeCycle: calling init");
+        System.out.println("consulHost = " + consulHost);
+        System.out.println("consulPort = " + consulPort);
+        System.out.println("appName = " + appName);
+        System.out.println("appPort = " + appPort);
 
         try {
             ConsulClientOptions options = new ConsulClientOptions()
